@@ -8,7 +8,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Flurl;
 
-namespace Vault.Sample.Extensions
+namespace Configuration.Vault.Hashicorp.Extensions
 {
     public static class VaultExtensions
     {

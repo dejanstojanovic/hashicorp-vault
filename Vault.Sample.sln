@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vault.Sample", "Vault.Sample\Vault.Sample.csproj", "{6C628F45-5261-4473-B0EA-8842FE0DC555}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configuration.Vault.Hashicorp", "Configuration.Vault.Hashicorp\Configuration.Vault.Hashicorp.csproj", "{EEBBB1D2-EB65-49CC-9924-92D56266A779}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Api", "Sample.Api\Sample.Api.csproj", "{A8F65214-080D-4A88-9EEA-92D8E7AAAB8D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6C628F45-5261-4473-B0EA-8842FE0DC555}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6C628F45-5261-4473-B0EA-8842FE0DC555}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6C628F45-5261-4473-B0EA-8842FE0DC555}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6C628F45-5261-4473-B0EA-8842FE0DC555}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEBBB1D2-EB65-49CC-9924-92D56266A779}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEBBB1D2-EB65-49CC-9924-92D56266A779}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEBBB1D2-EB65-49CC-9924-92D56266A779}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEBBB1D2-EB65-49CC-9924-92D56266A779}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8F65214-080D-4A88-9EEA-92D8E7AAAB8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8F65214-080D-4A88-9EEA-92D8E7AAAB8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8F65214-080D-4A88-9EEA-92D8E7AAAB8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8F65214-080D-4A88-9EEA-92D8E7AAAB8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,4 @@
-﻿namespace Vault.Sample.Extensions
+﻿namespace Configuration.Vault.Hashicorp.Extensions
 {
     public class VaultConfiguration
     {
