@@ -1,18 +1,15 @@
 ﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using Flurl;
 
 namespace Configuration.Vault.Hashicorp.Extensions
 {
     public static class VaultExtensions
     {
-
+        const string VAULT_TOKEN_HEADER = "X-Vault-Token";
+        const string JSON_CONTENT = "application/json";
         public static IConfiguration AddVault(this IConfiguration configuration, string configurationSectionName)
         {
             return configuration.AddVault(configuration.GetSection(configurationSectionName));
@@ -35,18 +32,30 @@ namespace Configuration.Vault.Hashicorp.Extensions
             using (HttpClient secretHttpClient = new HttpClient())
             {
                 string url = vaultConfiguration.Url.AppendPathSegment($"/v1/{vaultConfiguration.Backend}/data/{vaultConfiguration.Secret}");
+
+                #region Authentication
                 if (!string.IsNullOrWhiteSpace(vaultConfiguration.Token))
                 {
-                    secretHttpClient.DefaultRequestHeaders.Add("X-Vault-Token", vaultConfiguration.Token);
+                    secretHttpClient.DefaultRequestHeaders.Add(VAULT_TOKEN_HEADER, vaultConfiguration.Token);
                 }
                 else
                 {
                     using (HttpClient authHttpClient = new HttpClient())
                     {
+                        string authUrl = vaultConfiguration.Url.AppendPathSegment($"/v1/auth/userpass/login/{vaultConfiguration.Username}");
+                        var authResponse = authHttpClient.PostAsync(authUrl, new StringContent(
+                                JsonSerializer.Serialize(new { password = vaultConfiguration.Password }),
+                                Encoding.UTF8,
+                                JSON_CONTENT)).Result.EnsureSuccessStatusCode();
 
+                        var authResponseDoc = JsonDocument.Parse(authResponse.Content.ReadAsStringAsync().Result);
+                        var clientToken = authResponseDoc.RootElement.GetProperty("auth").GetProperty("client_token").GetString();
+                        secretHttpClient.DefaultRequestHeaders.Add(VAULT_TOKEN_HEADER, clientToken);
                     }
                 }
-                secretHttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                #endregion
+
+                secretHttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(JSON_CONTENT));
                 var response = secretHttpClient.GetStringAsync(url).Result;
 
                 using var doc = JsonDocument.Parse(response);

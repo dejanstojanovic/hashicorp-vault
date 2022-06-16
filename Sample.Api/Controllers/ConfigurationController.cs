@@ -6,20 +6,18 @@ namespace Sample.Api.Controllers
     [Route("[controller]")]
     public class ConfigurationController : ControllerBase
     {
-        
+        readonly IConfiguration _configuration;
 
-
-        private readonly ILogger<ConfigurationController> _logger;
-
-        public ConfigurationController(ILogger<ConfigurationController> logger)
+        public ConfigurationController(IConfiguration configuration)
         {
-            _logger = logger;
+            _configuration = configuration;
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
+        [HttpGet]
         public IActionResult Get()
         {
-          return Ok();
+            var connectionString = _configuration.GetValue<string>("DatabaseConnectionString");
+            return Ok(connectionString);
         }
     }
 }
