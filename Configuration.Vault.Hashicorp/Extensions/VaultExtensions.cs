@@ -64,7 +64,8 @@ namespace Configuration.Vault.Hashicorp.Extensions
                 var keys = data.EnumerateObject();
                 foreach (var key in keys)
                 {
-                    configuration[key.Name] = key.Value.GetString();
+                    var configKey = key.Name.Replace("__", ":");
+                    configuration[configKey] = key.Value.GetString();
                 }
 
                 return configuration;

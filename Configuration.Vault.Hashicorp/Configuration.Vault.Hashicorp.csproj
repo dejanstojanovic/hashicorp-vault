@@ -4,6 +4,16 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	  <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(MSBuildThisFileName).xml</DocumentationFile>
+	  <ProjectGuid>{C1ED5F3A-819B-4035-A128-D8907828F0E7}</ProjectGuid>
+	  <PackageId>Configuration.Vault.Hashicorp</PackageId>
+	  <Authors>Dejan Stojanovic</Authors>
+	  <Version>1.0.0</Version>
+	  <Description>.NET library for using HashiCorp Vault</Description>
+	  <PackageProjectUrl>https://github.com/dejanstojanovic/hashicorp-vault</PackageProjectUrl>
+	  <RepositoryUrl>https://github.com/dejanstojanovic/hashicorp-vault</RepositoryUrl>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
